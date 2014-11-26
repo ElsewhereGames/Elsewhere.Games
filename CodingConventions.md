@@ -24,29 +24,33 @@ This document will describe a set of guidelines used in the *Elsewhere Games* .N
 
 **DO** enclose `using` statements in a region.
 
-    #region Using
+```cs
+#region Using
     
-    using System.Collections.Generic;
+using System.Collections.Generic;
 
-    #endregion Using
+#endregion Using
+```
 
 **DO** group using statements further using nest regions using the top-level name.
 
-    #region Using
+```cs
+#region Using
 
-    #region System
+#region System
     
-    using System.Collections.Generic;
+using System.Collections.Generic;
 
-    #endregion System
+#endregion System
 
-    #region Elsewhere
+#region Elsewhere
 
-    using Elsewhere.Logging
+using Elsewhere.Logging
 
-    #endregion Elsewhere
+#endregion Elsewhere
 
-    #endregion Using
+#endregion Using
+```
 
 #### Variable and Operations ####
 
@@ -56,5 +60,12 @@ This document will describe a set of guidelines used in the *Elsewhere Games* .N
 
 #### Interfaces ####
 
-- Interface names shall never use the `I` prefix (see the Hungarian notation rule). They also cannot have `Interface` appended to their name. Use the same names as you use for abstract or regular classes.
+**DON'T** name interfaces using the `I` prefix (see the Hungarian notation rule). Also, don't append `Interface` appended to the name. Use the same names as you use for abstract or regular classes.
+
+```cs
+public interface LogOutput
+{
+
+}
+```
 
