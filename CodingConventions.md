@@ -17,6 +17,7 @@ ___
 ### Any violation to the conventions to improve readability is permitted. ###
 
 Rules are meant to be broken. Just keep the guiding principle of this document in mind, and don't get creative without consideration of the consequences.
+___
 
 ## Version Control ##
 
@@ -40,9 +41,9 @@ Use either *Visual Studio*'s [integrated test library](http://www.visualstudio.c
 
 ### Mark each test case a unit or integration test. ###
 
-Using test categories, mark each test as `Unit` or `Integration` test.
+Using test categories, mark each test as `Unit` or `Integration` test. For example, using `NUnit`:
 
-```csharp
+```cs
 
 [TestFixture, Category("Unit")]
 public class SimpleTests
@@ -51,8 +52,6 @@ public class SimpleTests
 }
 
 ```
-
-___
 
 ## Naming Conventions ##
 
