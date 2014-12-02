@@ -1,60 +1,65 @@
-## Coding Conventions ##
+# Coding Conventions #
 
-### Introduction ###
+## Introduction ##
 
-This document will describe a set of guidelines used in the *Elsewhere Games* .Net projects. Strict adherence to the rules are not required. Since most of these rules  
+This document will describe a set of guidelines used in the *Elsewhere Games* .Net projects. The guiding principle document is to create a code-base which is easy to maintain.
 
-### Version Control ###
+## In General ##
 
-**DO** create a branch for each feature you work on.
+### The conventions are not meant to be exhaustive. ###
 
-**DON'T** add third-party dependencies to the repository if they can be retrieved using [Nuget](https://www.nuget.org/).
+Too many rules will make this document impossible to maintain, read, and, most importantly, follow. This document will:
 
-    nuget restore
+- Serve as a broad guideline
+- Describe conventions not common to other .Net projects  
+___ 
 
-### Automated Testing ###
+### Any violation to the conventions to improve readability is permitted. ###
 
-**DO** accompany each class library project with a test project.
+Rules are meant to be broken. Just keep the guiding principle of this document in mind, and don't get creative without consideration of the consequences.
 
-**DON'T** Strictly adhere to [TDD](http://en.wikipedia.org/wiki/Test-driven_development).  
+## Version Control ##
 
-### Code Style ###
+### Create a feature branch for each feature under development. ###
 
-#### `Using` Statements ####
+When working on a feature or bug fix, always create a branch from the `develop` branch with a descriptive name.
+___
 
-**DO** enclose `using` statements in a region.
+### Manage third-party dependencies using *Nuget* ###
 
-    #region Using
-    
-    using System.Collections.Generic;
+Use a `packages.config` file to specify third-party dependencies and their version numbers. Either have *Visual Studio* [resolve the dependencies for you](http://docs.nuget.org/docs/workflows/using-nuget-without-committing-packages), or call `nuget restore`.
 
-    #endregion Using
+Try to avoid putting `.dll` files in version control.
+___
 
-**DO** group using statements further using nest regions using the top-level name.
+## Automated Testing ##
 
-    #region Using
+### Accompany each class library with a test project. ###
 
-    #region System
-    
-    using System.Collections.Generic;
+Use either *Visual Studio*'s [integrated test library](http://www.visualstudio.com/en-us/get-started/create-and-run-unit-tests-vs.aspx) or [NUnit](http://www.nunit.org/) in a separate project with tests.
 
-    #endregion System
+### Mark each test case a unit or integration test. ###
 
-    #region Elsewhere
+Using test categories, mark each test as `Unit` or `Integration` test.
 
-    using Elsewhere.Logging
+```csharp
 
-    #endregion Elsewhere
+[TestFixture, Category("Unit")]
+public class SimpleTests
+{
 
-    #endregion Using
+}
 
-#### Variable and Operations ####
+```
 
-- Use descriptive names, no abbreviations.
-- When referencing a class variable, always prepend the reference with `this.`.
-- [Hungarian notation](http://en.wikipedia.org/wiki/Hungarian_notation) is not allowed.
+___
 
-#### Interfaces ####
+## Naming Conventions ##
 
-- Interface names shall never use the `I` prefix (see the Hungarian notation rule). They also cannot have `Interface` appended to their name. Use the same names as you use for abstract or regular classes.
+### Interface names are not prepended with the letter "I" ###
 
+This goes against most *C#* coding conventions, however, those coding conventions usually also have rules against using [Hungarian notation](http://en.wikipedia.org/wiki/Hungarian_notation). 
+
+Also, although this will be rare, if you need to refactor an `interface` into an `abstract class`, there are many more places in which the code will need to change, leading to more places where bugs can occur. 
+
+___
